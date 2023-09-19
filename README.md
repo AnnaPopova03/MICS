@@ -1,6 +1,5 @@
 # MICS
 
-Variant: 8
-IDE: VSCode
-Language: Python
-Database: Microsoft SSMS 19
+| № |      IDE     | Language |      Database      |
+|---|--------------|----------|--------------------|
+| 8 |    VSCode    |  Python  | Microsoft SSMS 19  |
