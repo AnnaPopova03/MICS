@@ -1,22 +1,23 @@
+import os
 from price_list import PriceList
 from service import Service
-import os
 
-summer_season = "summer"
-winter_season = "winter"
-filename = "pricelist.txt"
+
+SUMMER_SEASON = "summer"
+WINTER_SEASON = "winter"
+FILENAME = "pricelist.txt"
 
 def input_service():
     name = input("Enter name of service: ")
     price = float(input("Enter price: "))
     return Service(name, price)
 
-def save_to_file(pricelist, filename):
-    with open(filename, 'w') as file:
-        file.write(f"{summer_season}:\n")
+def save_to_file(pricelist, FILENAME):
+    with open(FILENAME, 'w') as file:
+        file.write(f"{SUMMER_SEASON}:\n")
         for service in pricelist.summer:
             file.write(f"{service.name} - {service.price} grn\n")
-        file.write(f"{winter_season}:\n")
+        file.write(f"{WINTER_SEASON}:\n")
         for service in pricelist.winter:
             file.write(f"{service.name} - {service.price} grn\n")
 
@@ -27,23 +28,23 @@ def load_from_file(filename):
     with open(filename, 'r') as file:
         for line in file:
             line = line.strip()
-            if line == f"{summer_season}:":
-                current_season = summer_season
-            elif line == f"{winter_season}:":
-                current_season = winter_season
+            if line == f"{SUMMER_SEASON}:":
+                current_season = SUMMER_SEASON
+            elif line == f"{WINTER_SEASON}:":
+                current_season = WINTER_SEASON
             elif current_season and line:
                 name, price_str = line.split(" - ")
                 price = float(price_str.replace(" grn", ""))
                 service = Service(name, price)
-                if current_season == summer_season:
+                if current_season == SUMMER_SEASON:
                     pricelist.add_summer_service(service)
-                elif current_season == winter_season:
+                elif current_season == WINTER_SEASON:
                     pricelist.add_winter_service(service)
     return pricelist
 
 def main():
     try:
-        pricelist = load_from_file(filename)
+        pricelist = load_from_file(FILENAME)
     except FileNotFoundError:
         pricelist = PriceList()
 
@@ -57,11 +58,11 @@ def main():
         if ch == "1":
             new_service = input_service()
             season = input("Select season (summer or winter): ")
-            if season == summer_season:
+            if season == SUMMER_SEASON:
                 pricelist.add_summer_service(new_service)
-            elif season == winter_season:
+            elif season == WINTER_SEASON:
                 pricelist.add_winter_service(new_service)
-            save_to_file(pricelist, filename)
+            save_to_file(pricelist, FILENAME)
             print("The service is added successfully")
         elif ch == "2":
             season = input("Select season (summer or winter): ")

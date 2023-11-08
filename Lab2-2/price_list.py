@@ -1,5 +1,6 @@
 from service import Service
 
+
 class PriceList:
     def __init__(self):
         self.summer = []

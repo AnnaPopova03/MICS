@@ -1,5 +1,6 @@
 from service_prototype import ServicePrototype
 
+
 class Service(ServicePrototype):
     def __init__(self, name, price):
         self.name = name

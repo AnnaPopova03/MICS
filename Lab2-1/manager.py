@@ -3,16 +3,18 @@ from depositManager import DepositManager
 from creditManager import CreditManager
 
 class Manager:
-    card = "card" #constant
-    deposit = "deposit" #constant
-    credit = "credit" #constant
+    CARD = "card" 
+    DEPOSIT = "deposit" 
+    CREDIT = "credit"
+
+    managers = {
+        CARD: CardManager(),
+        DEPOSIT: DepositManager(),
+        CREDIT: CreditManager()
+    }
 
     def create_manager(self, request):
-        if request == self.card:
-            return CardManager()
-        elif request == self.deposit:
-            return DepositManager()
-        elif request == self.credit:
-            return CreditManager()
+        if request in self.managers:
+            return self.managers[request]
         else:
             raise ValueError("Unknown request")
