@@ -5,6 +5,6 @@ Images
 ![LR2 second part](lr2-2.png)
 
 Info
-| № |      IDE     | Language |      Database      |
-|---|--------------|----------|--------------------|
-| 8 |    VSCode    |  Python  | Microsoft SSMS 19  |
+| №  |      IDE     | Language |      Database      |
+|----|--------------|----------|--------------------|
+| 16 |    VSCode    |  Python  | Microsoft SSMS 19  |
