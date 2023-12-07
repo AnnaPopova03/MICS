@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from employee import EmployeeComponent
+from employee_component import EmployeeComponent
 
 
 class DepartmentComposite(EmployeeComponent):
@@ -11,13 +11,13 @@ class DepartmentComposite(EmployeeComponent):
         self.subordinates.append(subordinate)
 
     def perform_action(self, action):
-        if action == "fire":
+        if action == EmployeeComponent.FIRE:
             print(f"All employees in department {self.name} have been fired.")
-        elif action == "transfer":
+        elif action == EmployeeComponent.TRANSFER:
             print(f"All employees in department {self.name} have been transferred.")
-        elif action == "vacation":
+        elif action == EmployeeComponent.VACATION:
             print(f"All employees in department {self.name} have been sent on vacation.")
-        elif action == "bonus":
+        elif action == EmployeeComponent.BONUS:
             print(f"All employees in department {self.name} have been awarded a bonus.")
         else:
             print(f"Action '{action}' for department {self.name}")

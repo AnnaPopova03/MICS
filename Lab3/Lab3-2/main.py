@@ -1,22 +1,24 @@
-from employee import EmployeeLeaf
+from employee_leaf import EmployeeLeaf
 from branch import BranchComposite
 from department import DepartmentComposite
 
 
 def choose_level(corporation):
+    # available levels and prompt user for a choice
     print("Available levels:")
     print("1. Corporation")
     print("2. Department")
     print("3. Branch")
-    choice = input("Choose a level (enter the corresponding number): ")
+    ch = input("Choose a level (enter the corresponding number): ")
 
     try:
-        choice = int(choice)
-        if choice == 1:
+        ch = int(ch)
+         # return the selected level based on user input
+        if ch == 1:
             return corporation
-        elif choice == 2:
+        elif ch == 2:
             return choose_component(corporation)
-        elif choice == 3:
+        elif ch == 3:
             selected_department = choose_component(corporation)
             return choose_component(selected_department)
         else:
@@ -26,6 +28,7 @@ def choose_level(corporation):
         return choose_level(corporation)
 
 def choose_component(component):
+     # available components for the selected level and prompt user for a choice
     print(f"Available components for {component.name}:")
     for i, sub_component in enumerate(component.subordinates):
         print(f"{i + 1}. {sub_component.name}")
@@ -34,6 +37,7 @@ def choose_component(component):
 
     try:
         choice = int(choice)
+        # return the selected component based on user input
         if 1 <= choice <= len(component.subordinates):
             return component.subordinates[choice - 1]
         else:
@@ -43,6 +47,7 @@ def choose_component(component):
         return choose_component(component)
 
 def main():
+    # create a corporate structure
     corporation = DepartmentComposite("RandomCorp")
 
     branch1 = BranchComposite("First branch")
